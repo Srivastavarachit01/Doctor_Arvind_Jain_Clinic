@@ -289,7 +289,7 @@ function initBackgroundShader() {
   `;
 
   const fs = `
-    precision highp float;
+    precision mediump float;
     varying vec2 v_texCoord;
     uniform float u_time;
     uniform vec2 u_resolution;
@@ -326,11 +326,11 @@ function initBackgroundShader() {
 
     void main() {
       vec2 uv = v_texCoord;
-      vec2 mouse = u_mouse / u_resolution;
+      vec2 mouse = u_mouse / max(u_resolution, vec2(1.0));
       
       // Create organic drifting medical fluid shapes
-      float n1 = snoise(uv * 1.5 + u_time * 0.06);
-      float n2 = snoise(uv * 2.5 - u_time * 0.09 + mouse * 0.3);
+      float n1 = clamp(snoise(uv * 1.5 + u_time * 0.06), -1.0, 1.0);
+      float n2 = clamp(snoise(uv * 2.5 - u_time * 0.09 + mouse * 0.3), -1.0, 1.0);
       
       // Soft clinical palette
       vec3 color1 = vec3(0.97, 0.98, 1.0); // clean bright surface
@@ -340,8 +340,8 @@ function initBackgroundShader() {
       vec3 finalColor = mix(color1, color2, n1 * 0.5 + 0.5);
       finalColor = mix(finalColor, color3, n2 * 0.25);
       
-      // Drifting subtle bio-specks
-      float specks = pow(snoise(uv * 25.0 + u_time * 0.1), 12.0);
+      // Drifting subtle bio-specks (use max(0.0) for GLSL pow safety on Windows DirectX drivers)
+      float specks = pow(max(0.0, snoise(uv * 25.0 + u_time * 0.1)), 12.0);
       finalColor += specks * 0.04;
       
       gl_FragColor = vec4(finalColor, 1.0);
