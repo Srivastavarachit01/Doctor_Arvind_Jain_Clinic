@@ -1,0 +1,191 @@
+/* Custom Premium Design System styles for Dr. Gourav Garg Clinic */
+
+/* Base Customizations */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Background canvas positioning */
+#bg-shader-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eff4ff; /* surface-container-low */
+}
+::-webkit-scrollbar-thumb {
+  background: #c6c6cd; /* outline-variant */
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #76777d; /* outline */
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* 3D Tactile Buttons */
+.btn-3d {
+  position: relative;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 0 #1b263b; /* Primary dark shadow */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-3d:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #1b263b;
+}
+
+.btn-3d:active {
+  transform: translateY(4px) !important;
+  box-shadow: 0 0px 0 #1b263b !important;
+}
+
+/* Secondary 3D buttons (Teal themed) */
+button.bg-secondary.btn-3d {
+  box-shadow: 0 4px 0 #004d34;
+}
+button.bg-secondary.btn-3d:hover {
+  box-shadow: 0 5px 0 #004d34;
+}
+button.bg-secondary.btn-3d:active {
+  box-shadow: 0 0px 0 #004d34 !important;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(11, 28, 48, 0.04);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Claymorphic Cards */
+.clay-card {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    inset 4px 4px 12px rgba(255, 255, 255, 0.95),
+    inset -4px -4px 12px rgba(11, 28, 48, 0.05),
+    0 10px 30px rgba(11, 28, 48, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clay-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow:
+    inset 4px 4px 12px rgba(255, 255, 255, 0.95),
+    inset -4px -4px 12px rgba(11, 28, 48, 0.05),
+    0 20px 40px rgba(11, 28, 48, 0.08),
+    0 1px 5px rgba(0, 0, 0, 0.03);
+}
+
+/* Claymorphic Icons */
+.clay-icon {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    inset 3px 3px 6px rgba(255, 255, 255, 0.95),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.08),
+    0 6px 15px rgba(0, 0, 0, 0.04);
+}
+
+/* Embossed Typography */
+.embossed-num {
+  text-shadow: 
+    1px 1px 0px rgba(255, 255, 255, 0.9), 
+    -1px -1px 0px rgba(0, 0, 0, 0.03),
+    0px 4px 8px rgba(0, 108, 73, 0.08);
+}
+
+/* Accordion Smooth Height Transition */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 250px; /* Adjust according to content */
+}
+
+.accordion-item {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion-item.active {
+  border-color: rgba(0, 108, 73, 0.3) !important;
+  box-shadow: 0 10px 25px rgba(0, 108, 73, 0.05);
+}
+
+/* Parallax layer transition */
+.parallax-layer {
+  transition: transform 0.1s ease-out;
+}
+
+/* Perspective container for 3D Hero avatar */
+.perspective-container {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 28, 48, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-box {
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.modal-overlay.active .modal-box {
+  transform: scale(1);
+}
